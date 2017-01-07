@@ -1,4 +1,4 @@
-version: '2'
+version: '1'
 
 services:
   emersondb:
@@ -11,3 +11,5 @@ services:
 volumes:
   emersondb_data:
     driver: local
+
+    

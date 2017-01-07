@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  emersondb-master:
+  emersondb:
     image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306'
@@ -19,12 +19,12 @@ services:
     ports:
       - '3306'
     depends_on:
-      - emersondb-master
+      - emersondb
     environment:
       - EMERSONDB_REPLICATION_MODE=slave
       - EMERSONDB_REPLICATION_USER=repl_user
       - EMERSONDB_REPLICATION_PASSWORD=repl_password
-      - EMERSONDB_MASTER_HOST=emersondb-master
+      - EMERSONDB_MASTER_HOST=emersondb
       - EMERSONDB_MASTER_PORT=3306
       - EMERSONDB_USER=my_user
       - EMERSONDB_PASSWORD=my_password

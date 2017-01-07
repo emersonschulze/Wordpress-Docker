@@ -240,7 +240,7 @@ In a replication cluster you can have one master and zero or more slaves. When r
 The first step is to start the EmersonDB master.
 
 ```bash
-docker run --name emersondb-master \
+docker run --name emersondb \
   -e EMERSONDB_ROOT_PASSWORD=root_password \
   -e EMERSONDB_REPLICATION_MODE=master \
   -e EMERSONDB_REPLICATION_USER=my_repl_user \
@@ -258,7 +258,7 @@ In the above command the container is configured as the `master` using the `EMER
 Next we start a EmersonDB slave container.
 
 ```bash
-docker run --name emersondb-slave --link emersondb-master:master \
+docker run --name emersondb-slave --link emersondb:master \
   -e EMERSONDB_ROOT_PASSWORD=root_password \
   -e EMERSONDB_REPLICATION_MODE=slave \
   -e EMERSONDB_REPLICATION_USER=my_repl_user \
@@ -284,7 +284,7 @@ With Docker Compose the master/slave replication can be setup using:
 version: '2'
 
 services:
-  emersondb-master:
+  emersondb:
     image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306'
@@ -303,12 +303,12 @@ services:
     ports:
       - '3306'
     depends_on:
-      - emersondb-master
+      - emersondb
     environment:
       - EMERSONDB_REPLICATION_MODE=slave
       - EMERSONDB_REPLICATION_USER=repl_user
       - EMERSONDB_REPLICATION_PASSWORD=repl_password
-      - EMERSONDB_MASTER_HOST=emersondb-master
+      - EMERSONDB_MASTER_HOST=emersondb
       - EMERSONDB_MASTER_PORT=3306
       - EMERSONDB_MASTER_USER=my_user
       - EMERSONDB_MASTER_PASSWORD=my_password
@@ -321,7 +321,7 @@ services:
 Scale the number of slaves using:
 
 ```bash
-docker-compose scale emersondb-master=1 emersondb-slave=3
+docker-compose scale emersondb=1 emersondb-slave=3
 ```
 
 The above command scales up the number of slaves to `3`. You can scale down in the same manner.
