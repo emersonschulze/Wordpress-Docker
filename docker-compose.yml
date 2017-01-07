@@ -1,12 +1,12 @@
 version: '2'
 
 services:
-  mariadb:
-    image: 'bitnami/emersondb:latest'
+  emersondb:
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306:3306'
     volumes:
-      - 'emersondb_data:/bitnami/emersondb'
+      - 'emersondb_data:/emersonschulze/emersondb'
 
 volumes:
   emersondb_data:

@@ -1,16 +1,16 @@
-[![CircleCI](https://circleci.com/gh/bitnami/bitnami-docker-emersondb/tree/master.svg?style=shield)](https://circleci.com/gh/bitnami/bitnami-docker-emersondb/tree/master)
-[![Docker Hub Automated Build](http://container.checkforupdates.com/badges/bitnami/emersondb)](https://hub.docker.com/r/bitnami/emersondb/)
+[![CircleCI](https://circleci.com/gh/emersonschulze/Wordpress-Docker/tree/master.svg?style=shield)](https://circleci.com/gh/emersonschulze/Wordpress-Docker/tree/master)
+[![Docker Hub Automated Build](http://container.checkforupdates.com/badges/emersonschulze/emersondb)](https://hub.docker.com/r/emersonschulze/emersondb/)
 
 # What is EmersonDB?
 
-> EmersonDB is a fast, reliable, scalable, and easy to use open-source relational database system. emersondb Server is intended for mission-critical, heavy-load production systems as well as for embedding into mass-deployed software.
+> EmersonDB is a fast, reliable, scalable, and easy to use open-source relational database system. EmersonDB Server is intended for mission-critical, heavy-load production systems as well as for embedding into mass-deployed software.
 
 [https://emersondb.com/](https://emersondb.com/)
 
 # TLDR
 
 ```bash
-docker run --name emersondb bitnami/emersondb:latest
+docker run --name emersondb emersonschulze/emersondb:latest
 ```
 
 ## Docker Compose
@@ -20,31 +20,31 @@ version: '2'
 
 services:
   emersondb:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306:3306'
 ```
 
 # Get this image
 
-The recommended way to get the Bitnami EmersonDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/emersondb).
+The recommended way to get the Bitnami EmersonDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/emersonschulze/emersondb).
 
 ```bash
-docker pull bitnami/emersondb:latest
+docker pull emersonschulze/emersondb:latest
 ```
 
 To use a specific version, you can pull a versioned tag. You can view the
-[list of available versions](https://hub.docker.com/r/bitnami/emersondb/tags/)
+[list of available versions](https://hub.docker.com/r/emersonschulze/emersondb/tags/)
 in the Docker Hub Registry.
 
 ```bash
-docker pull bitnami/emersondb:[TAG]
+docker pull emersonschulze/emersondb:[TAG]
 ```
 
 If you wish, you can also build the image yourself.
 
 ```bash
-docker build -t bitnami/emersondb:latest https://github.com/bitnami/bitnami-docker-emersondb.git
+docker build -t emersonschulze/emersondb:latest https://github.com/emersonschulze/Wordpress-Docker.git
 ```
 
 # Persisting your database
@@ -55,10 +55,10 @@ If you remove the container all your data and configurations will be lost, and t
 If you have already started using your database, follow the steps on
 [backing up](#backing-up-your-container) and [restoring](#restoring-a-backup) to pull the data from your running container down to your host.
 
-The image exposes a volume at `/bitnami/emersondb` for the Emersondb data and configurations. For persistence you can mount a directory at this location from your host. If the mounted directory is empty, it will be initialized on the first run.
+The image exposes a volume at `/emersonschulze/emersondb` for the EmersonDB data and configurations. For persistence you can mount a directory at this location from your host. If the mounted directory is empty, it will be initialized on the first run.
 
 ```bash
-docker run -v /path/to/emersondb-persistence:/bitnami/emersondb bitnami/emersondb:latest
+docker run -v /path/to/emersondb-persistence:/emersonschulze/emersondb emersonschulze/emersondb:latest
 ```
 
 or using Docker Compose:
@@ -68,11 +68,11 @@ version: '2'
 
 services:
   emersondb:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306:3306'
     volumes:
-      - /path/to/emersondb-persistence:/bitnami/emersondb
+      - /path/to/emersondb-persistence:/emersonschulze/emersondb
 ```
 
 # Connecting to other containers
@@ -98,7 +98,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```bash
 $ docker run -d --name emersondb-server \
     --network app-tier \
-    bitnami/emersondb:latest
+    emersonschulze/emersondb:latest
 ```
 
 ### Step 3: Launch your EmersonDB client instance
@@ -108,7 +108,7 @@ Finally we create a new container instance to launch the EmersonDB client and co
 ```bash
 $ docker run -it --rm \
     --network app-tier \
-    bitnami/emersondb:latest mysql -h emersondb-server -u root
+    emersonschulze/emersondb:latest mysql -h emersondb-server -u root
 ```
 
 ## Using Docker Compose
@@ -124,7 +124,7 @@ networks:
 
 services:
   emersondb:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     networks:
       - app-tier
   myapp:
@@ -151,7 +151,7 @@ $ docker-compose up -d
 Passing the `EMERSONDB_ROOT_PASSWORD` environment variable when running the image for the first time will set the password of the root user to the value of `EMERSONDB_ROOT_PASSWORD`.
 
 ```bash
-docker run --name emersondb -e EMERSONDB_ROOT_PASSWORD=schulze bitnami/emersondb:latest
+docker run --name emersondb -e EMERSONDB_ROOT_PASSWORD=password123 emersonschulze/emersondb:latest
 ```
 
 or using Docker Compose:
@@ -161,11 +161,11 @@ version: '2'
 
 services:
   emersondb:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306:3306'
     environment:
-      - EMERSONDB_ROOT_PASSWORD=schulze
+      - EMERSONDB_ROOT_PASSWORD=password123
 ```
 
 **Warning** The `root` user is always created with remote access. It's suggested that the `EMERSONDB_ROOT_PASSWORD` env variable is always specified to set a password for the `root` user.
@@ -175,7 +175,7 @@ services:
 By passing the `EMERSONDB_DATABASE` environment variable when running the image for the first time, a database will be created. This is useful if your application requires that a database already exists, saving you from having to manually create the database using the MySQL client.
 
 ```bash
-docker run --name emersondb -e EMERSONDB_DATABASE=my_database bitnami/emersondb:latest
+docker run --name emersondb -e EMERSONDB_DATABASE=my_database emersonschulze/emersondb:latest
 ```
 
 or using Docker Compose:
@@ -185,7 +185,7 @@ version: '2'
 
 services:
   emersondb:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306:3306'
     environment:
@@ -200,7 +200,7 @@ You can create a restricted database user that only has permissions for the data
 docker run --name emersondb \
   -e EMERSONDB_USER=my_user -e EMERSONDB_PASSWORD=my_password \
   -e EMERSONDB_DATABASE=my_database \
-  bitnami/emersondb:latest
+  emersonschulze/emersondb:latest
 ```
 
 or using Docker Compose:
@@ -210,7 +210,7 @@ version: '2'
 
 services:
   emersondb:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306:3306'
     environment:
@@ -248,7 +248,7 @@ docker run --name emersondb-master \
   -e EMERSONDB_USER=my_user \
   -e EMERSONDB_PASSWORD=my_password \
   -e EMERSONDB_DATABASE=my_database \
-  bitnami/emersondb:latest
+  emersonschulze/emersondb:latest
 ```
 
 In the above command the container is configured as the `master` using the `EMERSONDB_REPLICATION_MODE` parameter. A replication user is specified using the `EMERSONDB_REPLICATION_USER` and `EMERSONDB_REPLICATION_PASSWORD` parameters.
@@ -269,7 +269,7 @@ docker run --name emersondb-slave --link emersondb-master:master \
   -e EMERSONDB_USER=my_user \
   -e EMERSONDB_PASSWORD=my_password \
   -e EMERSONDB_DATABASE=my_database \
-  bitnami/emersondb:latest
+  emersonschulze/emersondb:latest
 ```
 
 In the above command the container is configured as a `slave` using the `EMERSONDB_REPLICATION_MODE` parameter. The `EMERSONDB_MASTER_HOST`, `EMERSONDB_MASTER_USER` and `EMERSONDB_MASTER_PASSWORD` parameters are used by the slave to connect to the master and take a dump of the existing data in the database identified by `EMERSONDB_DATABASE`. The replication user credentials are specified using the `EMERSONDB_REPLICATION_USER` and `EMERSONDB_REPLICATION_PASSWORD` parameters and should be the same as the one specified on the master.
@@ -285,11 +285,11 @@ version: '2'
 
 services:
   emersondb-master:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306'
     volumes:
-      - /path/to/emersondb-persistence:/bitnami/emersondb
+      - /path/to/emersondb-persistence:/emersonschulze/emersondb
     environment:
       - EMERSONDB_REPLICATION_MODE=master
       - EMERSONDB_REPLICATION_USER=repl_user
@@ -299,7 +299,7 @@ services:
       - EMERSONDB_PASSWORD=my_password
       - EMERSONDB_DATABASE=my_database
   emersondb-slave:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306'
     depends_on:
@@ -330,7 +330,7 @@ The above command scales up the number of slaves to `3`. You can scale down in t
 
 ## Configuration file
 
-The image looks for configuration in the `conf/` directory of `/bitnami/emersondb`. As mentioned in [Persisting your database](#persisting-your-data) you can mount a volume at this location and copy your own custom `my_custom.cnf` file in the `conf/` directory. That file will be included in the main configuration file and will overwrite any configuration you want to modify.
+The image looks for configuration in the `conf/` directory of `/emersonschulze/emersondb`. As mentioned in [Persisting your database](#persisting-your-data) you can mount a volume at this location and copy your own custom `my_custom.cnf` file in the `conf/` directory. That file will be included in the main configuration file and will overwrite any configuration you want to modify.
 
 For example, in order to override the max_allowed_packet directive:
 
@@ -342,7 +342,7 @@ max_allowed_packet=32M
 
 # Step 2: Run the emersonDB image with the designed volume attached.
 ```
-docker run --name emersondb -v /path/to/my_custom_cnf_directory:/bitnami/emersondb bitnami/emersondb:latest
+docker run --name emersondb -v /path/to/my_custom_cnf_directory:/emersonschulze/emersondb emersonschulze/emersondb:latest
 ```
 After that, your changes will be taken into account in the server's behaviour.
 
@@ -351,7 +351,7 @@ After that, your changes will be taken into account in the server's behaviour.
 Run the EmersonDB image, mounting a directory from your host.
 
 ```bash
-docker run --name emersondb -v /path/to/emersondb-persistence:/bitnami/emersondb bitnami/emersondb:latest
+docker run --name emersondb -v /path/to/emersondb-persistence:/emersonschulze/emersondb emersonschulze/emersondb:latest
 ```
 
 or using Docker Compose:
@@ -361,11 +361,11 @@ version: '2'
 
 services:
   emersondb:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306:3306'
     volumes:
-      - /path/to/emersondb-persistence:/bitnami/emersondb
+      - /path/to/emersondb-persistence:/emersonschulze/emersondb
 ```
 
 ### Step 2: Edit the configuration
@@ -434,14 +434,14 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```bash
 docker run --rm -v /path/to/emersondb-backups:/backups --volumes-from emersondb busybox \
-  cp -a /bitnami/emersondb:latest /backups/latest
+  cp -a /emersonschulze/emersondb:latest /backups/latest
 ```
 
 or using Docker Compose:
 
 ```bash
 docker run --rm -v /path/to/emersondb-backups:/backups --volumes-from `docker-compose ps -q emersondb` busybox \
-  cp -a /bitnami/emersondb:latest /backups/latest
+  cp -a /emersonschulze/emersondb:latest /backups/latest
 ```
 
 ## Restoring a backup
@@ -449,7 +449,7 @@ docker run --rm -v /path/to/emersondb-backups:/backups --volumes-from `docker-co
 Restoring a backup is as simple as mounting the backup as volumes in the container.
 
 ```bash
-docker run -v /path/to/emersondb-backups/latest:/bitnami/emersondb bitnami/emersondb:latest
+docker run -v /path/to/emersondb-backups/latest:/emersonschulze/emersondb emersonschulze/emersondb:latest
 ```
 
 or using Docker Compose:
@@ -459,11 +459,11 @@ version: '2'
 
 services:
   emersondb:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306:3306'
     volumes:
-      - /path/to/emersondb-backups/latest:/bitnami/emersondb
+      - /path/to/emersondb-backups/latest:/emersonschulze/emersondb
 ```
 
 ## Upgrade this image
@@ -473,11 +473,11 @@ Bitnami provides up-to-date versions of EmersonDB, including security patches, s
 ### Step 1: Get the updated image
 
 ```bash
-docker pull bitnami/emersondb:latest
+docker pull emersonschulze/emersondb:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/emersondb:latest`.
+`emersonschulze/emersondb:latest`.
 
 ### Step 2: Stop and backup the currently running container
 
@@ -502,7 +502,7 @@ docker-compose rm -v emersondb
 Re-create your container from the new image, [restoring your backup](#restoring-a-backup) if necessary.
 
 ```bash
-docker run --name emersondb bitnami/emersondb:latest
+docker run --name emersondb emersonschulze/emersondb:latest
 ```
 
 or using Docker Compose:
@@ -523,16 +523,16 @@ bats test.sh
 
 ## 10.1.13-r0
 
-- All volumes have been merged at `/bitnami/emersondb`. Now you only need to mount a single volume at `/bitnami/emersondb` for persistence.
+- All volumes have been merged at `/emersonschulze/emersondb`. Now you only need to mount a single volume at `/emersonschulze/emersondb` for persistence.
 - The logs are always sent to the `stdout` and are no longer collected in the volume.
 
 # Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/bitnami-docker-emersondb/issues), or submit a [pull request](https://github.com/bitnami/bitnami-docker-emersondb/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/emersonschulze/Wordpress-Docker/issues), or submit a [pull request](https://github.com/emersonschulze/Wordpress-Docker/pulls) with your contribution.
 
 # Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/bitnami-docker-emersondb/issues). For us to provide better support, be sure to include the following information in your issue:
+If you encountered a problem running this container, you can file an [issue](https://github.com/emersonschulze/Wordpress-Docker/issues). For us to provide better support, be sure to include the following information in your issue:
 
 - Host OS and version
 - Docker version (`docker version`)

@@ -2,11 +2,11 @@ version: '2'
 
 services:
   emersondb-master:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306'
     volumes:
-      - 'emersondb_master_data:/bitnami/emersondb'
+      - 'emersondb_master_data:/emersonschulze/emersondb'
     environment:
       - EMERSONDB_REPLICATION_MODE=master
       - EMERSONDB_REPLICATION_USER=repl_user
@@ -15,7 +15,7 @@ services:
       - EMERSONDB_PASSWORD=my_password
       - EMERSONDB_DATABASE=my_database
   emersondb-slave:
-    image: 'bitnami/emersondb:latest'
+    image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306'
     depends_on:
