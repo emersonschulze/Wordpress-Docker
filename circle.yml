@@ -22,8 +22,8 @@ deployment:
   cache:
     branch: master
     commands:
-    - curl -sL https://raw.githubusercontent.com/bitnami/test-infra/master/circle/docker-update-cache.sh | bash -
+    - curl -sL https://raw.githubusercontent.com/emersonschulze/test-infra/master/circle/docker-update-cache.sh | bash -
   release:
     tag: /^[0-9].*-r[0-9]+$/
     commands:
-    - curl -sL https://raw.githubusercontent.com/bitnami/test-infra/master/circle/docker-release-image.sh | bash -
+    - curl -sL https://raw.githubusercontent.com/emersonschulze/test-infra/master/circle/docker-release-image.sh | bash -
