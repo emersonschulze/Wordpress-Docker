@@ -27,7 +27,7 @@ services:
 
 # Get this image
 
-The recommended way to get the Bitnami EmersonDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/emersonschulze/emersondb).
+The recommended way to get the EmersonSchulze EmersonDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/emersonschulze/emersondb).
 
 ```bash
 docker pull emersonschulze/emersondb:latest
@@ -223,7 +223,7 @@ services:
 
 ## Setting up a replication cluster
 
-A **zero downtime** EmersonDB master-slave [replication](https://dev.mysql.com/doc/refman/5.0/en/replication-howto.html) cluster can easily be setup with the Bitnami EmersonDB Docker image using the following environment variables:
+A **zero downtime** EmersonDB master-slave [replication](https://dev.mysql.com/doc/refman/5.0/en/replication-howto.html) cluster can easily be setup with the EmersonSchulze EmersonDB Docker image using the following environment variables:
 
  - `EMERSONDB_REPLICATION_MODE`: The replication mode. Possible values `master`/`slave`. No defaults.
  - `EMERSONDB_REPLICATION_USER`: The replication user created on the master on first run. No defaults.
@@ -396,7 +396,7 @@ docker-compose restart emersondb
 
 # Logging
 
-The Bitnami EmersonDB Docker image sends the container logs to the `stdout`. To view the logs:
+The EmersonSchulze EmersonDB Docker image sends the container logs to the `stdout`. To view the logs:
 
 ```bash
 docker logs emersondb
@@ -468,7 +468,7 @@ services:
 
 ## Upgrade this image
 
-Bitnami provides up-to-date versions of EmersonDB, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
+EmersonSchulze provides up-to-date versions of EmersonDB, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
 
 ### Step 1: Get the updated image
 
@@ -537,12 +537,12 @@ If you encountered a problem running this container, you can file an [issue](htt
 - Host OS and version
 - Docker version (`docker version`)
 - Output of `docker info`
-- Version of this container (`echo $BITNAMI_IMAGE_VERSION` inside the container)
+- Version of this container (`echo $EMERSONSCHULZE_IMAGE_VERSION` inside the container)
 - The command you used to run the container, and any relevant output you saw (masking any sensitive information)
 
 # License
 
-Copyright (c) 2015-2016 Bitnami
+Copyright (c) 2015-2016 EmersonSchulze
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
