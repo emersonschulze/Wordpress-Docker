@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  mariadb:
+    image: 'bitnami/emersondb:latest'
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'emersondb_data:/bitnami/emersondb'
+
+volumes:
+  emersondb_data:
+    driver: local

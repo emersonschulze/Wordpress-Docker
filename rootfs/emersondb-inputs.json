@@ -1,0 +1,14 @@
+{
+  "rootPassword": "{{$global.env.EMERSONDB_ROOT_PASSWORD}}",
+  "username": "{{$global.env.EMERSONDB_USER}}",
+  "password": "{{$global.env.EMERSONDB_PASSWORD}}",
+  "database": "{{$global.env.EMERSONDB_DATABASE}}",
+  "port": "{{$global.env.EMERSONDB_PORT}}",
+  "replicationMode": "{{$global.env.EMERSONDB_REPLICATION_MODE}}",
+  "replicationUser": "{{$global.env.EMERSONDB_REPLICATION_USER}}",
+  "replicationPassword": "{{$global.env.EMERSONDB_REPLICATION_PASSWORD}}",
+  "masterHost": "{{$global.env.EMERSONDB_MASTER_HOST}}",
+  "masterPort": "{{$global.env.EMERSONDB_MASTER_PORT}}",
+  "masterUser": "{{$global.env.EMERSONDB_MASTER_USER}}",
+  "masterPassword": "{{$global.env.EMERSONDB_MASTER_PASSWORD}}"
+}
