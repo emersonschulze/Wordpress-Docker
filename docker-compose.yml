@@ -2,7 +2,7 @@ version: '2'
 
 services:
   emersondb:
-    image: 'emersonschulze/emersondb:latest'
+      image: 'emersonschulze/emersondb:latest'
     ports:
       - '3306:3306'
     volumes:

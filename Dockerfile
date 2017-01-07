@@ -1,9 +1,9 @@
 ## BUILDING
 ##   (from project root directory)
-##   $ docker build -t ubuntu-for-bitnami-bitnami-docker-emersondb .
+##   $ docker build -t ubuntu-for-emersonschulze-Wordpres-Docker .
 ##
 ## RUNNING
-##   $ docker run ubuntu-for-bitnami-bitnami-docker-emersondb
+##   $ docker run ubuntu-for-emersonschulze-Wordpres-Docker
 
 FROM gcr.io/stacksmith-images/minideb:jessie-r8
 
